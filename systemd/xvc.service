@@ -1,0 +1,17 @@
+# Template systemd unit for an XVC server on the Raspberry Pi (Path B).
+# Replace ExecStart with the real binary and arguments from your chosen XVC
+# server (see the project README), then install with:
+#   sudo cp xvc.service /etc/systemd/system/xvc.service
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now xvc
+[Unit]
+Description=XVC server for Arty S7
+After=network.target
+
+[Service]
+ExecStart=/path/to/xvc-binary
+Restart=on-failure
+User=pi
+
+[Install]
+WantedBy=multi-user.target
